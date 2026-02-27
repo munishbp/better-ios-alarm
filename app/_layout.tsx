@@ -11,6 +11,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Colors } from '../lib/constants';
 import { soundManager } from '../lib/sound-manager';
 import { useAlarmStore } from '../lib/alarm-store';
+import { initializeScheduler } from '../lib/alarm-scheduler';
 import { getLaunchAlarmId } from '../modules/alarm-kit';
 
 /**
@@ -18,12 +19,16 @@ import { getLaunchAlarmId } from '../modules/alarm-kit';
  * If so, set the active alarm and navigate to the firing screen.
  */
 function checkAlarmLaunch(router: ReturnType<typeof useRouter>) {
+  const store = useAlarmStore.getState();
+
+  // Guard: don't navigate again if we're already handling an alarm
+  if (store.isRinging || store.activeAlarmId) return;
+
   const alarmId = getLaunchAlarmId();
   if (alarmId) {
     // Find the matching alarm in the store by its UUID or iterate
     // The StopAlarmIntent writes the UUID; we need to match it back.
     // For now, set the first armed alarm as active (the UUID mapping is in-memory).
-    const store = useAlarmStore.getState();
     // Try to find alarm directly (alarmId might be the alarm's own id)
     const alarm = store.alarms.find((a) => a.isArmed);
     if (alarm) {
@@ -45,8 +50,10 @@ export default function RootLayout() {
     // Initialize sound manager for alarm playback
     soundManager.initialize();
 
-    // Check if app was launched by an alarm
-    checkAlarmLaunch(router);
+    // Restore persisted retrigger UUIDs before checking alarm launch
+    initializeScheduler().then(() => {
+      checkAlarmLaunch(router);
+    });
 
     // Also check when app comes to foreground (in case it was backgrounded)
     const subscription = AppState.addEventListener('change', (state) => {

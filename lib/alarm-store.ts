@@ -6,6 +6,7 @@ import {
   scheduleAlarm,
   cancelAlarm,
   cancelAllAlarms,
+  cancelRetriggers,
 } from './alarm-scheduler';
 
 // ─── Helpers ───────────────────────────────────────────────────────
@@ -137,8 +138,10 @@ export const useAlarmStore = create<AlarmStore>()(
           challengeStartTime: null,
         });
 
-        // Reschedule the active alarm for its next occurrence
+        // Cancel re-triggers first, then reschedule for the next occurrence
+        // (scheduleAlarm will set up fresh re-triggers for the next day)
         if (state.activeAlarmId) {
+          cancelRetriggers(state.activeAlarmId);
           const alarm = state.alarms.find(
             (a) => a.id === state.activeAlarmId,
           );
