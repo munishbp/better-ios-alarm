@@ -1,19 +1,21 @@
 {
   "expo": {
-    "name": "wake-app",
+    "name": "WAKE",
     "slug": "wake-app",
-    "version": "1.0.0",
+    "scheme": "wake",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#0A0A0C"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.munishpersaud.wake"
     },
     "android": {
       "adaptiveIcon": {
@@ -25,6 +27,21 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-notifications",
+        {
+          "sounds": [
+            "./assets/sounds/siren.mp3",
+            "./assets/sounds/pulse.mp3",
+            "./assets/sounds/glass.mp3",
+            "./assets/sounds/drill.mp3",
+            "./assets/sounds/horn.mp3"
+          ]
+        }
+      ]
+    ]
   }
 }
