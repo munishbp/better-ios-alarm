@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   View,
   Text,
@@ -121,6 +121,13 @@ export default function HomeScreen() {
 
   const hasArmedAlarm = alarms.some((a) => a.isArmed);
 
+  const sortedAlarms = useMemo(
+    () => [...alarms].sort((a, b) =>
+      (a.time.hour * 60 + a.time.minute) - (b.time.hour * 60 + b.time.minute)
+    ),
+    [alarms],
+  );
+
   // Check volume on mount and when app returns to foreground
   const checkVolume = useCallback(() => {
     const vol = getSystemVolume();
@@ -206,7 +213,7 @@ export default function HomeScreen() {
           </View>
         ) : (
           <FlatList
-            data={alarms}
+            data={sortedAlarms}
             renderItem={renderItem}
             keyExtractor={keyExtractor}
             contentContainerStyle={styles.listContent}

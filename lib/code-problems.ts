@@ -378,6 +378,353 @@ console.log(a);`,
     correctIndex: 1,
     language: 'javascript',
   },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // SET / MAP OPERATIONS (4 problems)
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    id: 'set-01',
+    code: `s = {1, 2, 3, 2, 1}
+print(len(s))`,
+    question: 'What is the output?',
+    options: ['5', '3', '2', 'Error'],
+    correctIndex: 1,
+    language: 'python',
+  },
+  {
+    id: 'set-02',
+    code: `a = {1, 2, 3}
+b = {2, 3, 4}
+print(a & b)`,
+    question: 'What is the output?',
+    options: ['{1, 4}', '{2, 3}', '{1, 2, 3, 4}', 'Error'],
+    correctIndex: 1,
+    language: 'python',
+  },
+  {
+    id: 'set-03',
+    code: `const m = new Map();
+m.set("a", 1);
+m.set("a", 2);
+console.log(m.size);`,
+    question: 'What is the output?',
+    options: ['2', '1', '0', 'Error'],
+    correctIndex: 1,
+    language: 'javascript',
+  },
+  {
+    id: 'set-04',
+    code: `const s = new Set([1, 2, 3]);
+s.add(2);
+console.log([...s]);`,
+    question: 'What is the output?',
+    options: ['[1, 2, 3, 2]', '[1, 2, 3]', '[2, 3]', 'Error'],
+    correctIndex: 1,
+    language: 'javascript',
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // LIST COMPREHENSIONS / ARRAY METHODS (5 problems)
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    id: 'comp-01',
+    code: `r = [x ** 2 for x in range(4)]
+print(r)`,
+    question: 'What is the output?',
+    options: ['[1, 4, 9, 16]', '[0, 1, 4, 9]', '[0, 1, 4, 9, 16]', '[1, 4, 9]'],
+    correctIndex: 1,
+    language: 'python',
+  },
+  {
+    id: 'comp-02',
+    code: `r = [x for x in range(10) if x % 3 == 0]
+print(r)`,
+    question: 'What is the output?',
+    options: ['[3, 6, 9]', '[0, 3, 6, 9]', '[0, 3, 6]', '[1, 3, 6, 9]'],
+    correctIndex: 1,
+    language: 'python',
+  },
+  {
+    id: 'comp-03',
+    code: `const a = [1, 2, 3, 4, 5];
+const r = a.filter(x => x > 3);
+console.log(r);`,
+    question: 'What is the output?',
+    options: ['[3, 4, 5]', '[4, 5]', '[1, 2, 3]', '[5]'],
+    correctIndex: 1,
+    language: 'javascript',
+  },
+  {
+    id: 'comp-04',
+    code: `const a = [1, 2, 3];
+const r = a.map(x => x * 10);
+console.log(r);`,
+    question: 'What is the output?',
+    options: ['[1, 2, 3]', '[10, 20, 30]', '[11, 12, 13]', 'Error'],
+    correctIndex: 1,
+    language: 'javascript',
+  },
+  {
+    id: 'comp-05',
+    code: `const a = [1, 2, 3, 4];
+const r = a.reduce((s, x) => s + x, 0);
+console.log(r);`,
+    question: 'What is the output?',
+    options: ['10', '24', '0', 'NaN'],
+    correctIndex: 0,
+    language: 'javascript',
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // RECURSION (4 problems)
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    id: 'rec-01',
+    code: `def f(n):
+    if n <= 1: return n
+    return f(n-1) + f(n-2)
+print(f(6))`,
+    question: 'What is the output?',
+    options: ['5', '8', '13', '6'],
+    correctIndex: 1,
+    language: 'python',
+  },
+  {
+    id: 'rec-02',
+    code: `function f(n) {
+  if (n === 0) return 1;
+  return n * f(n - 1);
+}
+console.log(f(5));`,
+    question: 'What is the output?',
+    options: ['25', '15', '120', '60'],
+    correctIndex: 2,
+    language: 'javascript',
+  },
+  {
+    id: 'rec-03',
+    code: `def f(s):
+    if len(s) == 0: return ""
+    return f(s[1:]) + s[0]
+print(f("abc"))`,
+    question: 'What is the output?',
+    options: ['abc', 'cba', 'bca', 'Error'],
+    correctIndex: 1,
+    language: 'python',
+  },
+  {
+    id: 'rec-04',
+    code: `function sum(a) {
+  if (a.length === 0) return 0;
+  return a[0] + sum(a.slice(1));
+}
+console.log(sum([2, 4, 6]));`,
+    question: 'What is the output?',
+    options: ['6', '10', '12', '0'],
+    correctIndex: 2,
+    language: 'javascript',
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // CLOSURE / HIGHER-ORDER FUNCTIONS (4 problems)
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    id: 'clos-01',
+    code: `function make(x) {
+  return (y) => x + y;
+}
+const add5 = make(5);
+console.log(add5(3));`,
+    question: 'What is the output?',
+    options: ['3', '5', '8', 'NaN'],
+    correctIndex: 2,
+    language: 'javascript',
+  },
+  {
+    id: 'clos-02',
+    code: `def make_mult(n):
+    return lambda x: x * n
+double = make_mult(2)
+print(double(7))`,
+    question: 'What is the output?',
+    options: ['7', '9', '14', '2'],
+    correctIndex: 2,
+    language: 'python',
+  },
+  {
+    id: 'clos-03',
+    code: `function counter() {
+  let c = 0;
+  return () => ++c;
+}
+const inc = counter();
+inc(); inc();
+console.log(inc());`,
+    question: 'What is the output?',
+    options: ['1', '2', '3', '0'],
+    correctIndex: 2,
+    language: 'javascript',
+  },
+  {
+    id: 'clos-04',
+    code: `def apply(f, val):
+    return f(val)
+print(apply(lambda x: x ** 3, 3))`,
+    question: 'What is the output?',
+    options: ['9', '27', '6', 'Error'],
+    correctIndex: 1,
+    language: 'python',
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // ERROR HANDLING (3 problems)
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    id: 'err-01',
+    code: `try:
+    x = 1 / 0
+except ZeroDivisionError:
+    x = -1
+print(x)`,
+    question: 'What is the output?',
+    options: ['0', 'Infinity', '-1', 'Error'],
+    correctIndex: 2,
+    language: 'python',
+  },
+  {
+    id: 'err-02',
+    code: `let r;
+try {
+  r = JSON.parse("not json");
+} catch (e) {
+  r = "fail";
+}
+console.log(r);`,
+    question: 'What is the output?',
+    options: ['null', 'undefined', '"not json"', 'fail'],
+    correctIndex: 3,
+    language: 'javascript',
+  },
+  {
+    id: 'err-03',
+    code: `try:
+    v = int("abc")
+except ValueError:
+    v = 0
+finally:
+    v += 10
+print(v)`,
+    question: 'What is the output?',
+    options: ['0', '10', 'Error', 'abc'],
+    correctIndex: 1,
+    language: 'python',
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // SPREAD / DESTRUCTURING / UNPACKING (4 problems)
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    id: 'dest-01',
+    code: `const [a, ...b] = [1, 2, 3, 4];
+console.log(b);`,
+    question: 'What is the output?',
+    options: ['[2, 3, 4]', '[1, 2, 3]', '[3, 4]', '4'],
+    correctIndex: 0,
+    language: 'javascript',
+  },
+  {
+    id: 'dest-02',
+    code: `a, *b, c = [1, 2, 3, 4, 5]
+print(b)`,
+    question: 'What is the output?',
+    options: ['[2, 3, 4]', '[1, 2, 3, 4]', '[2, 3]', 'Error'],
+    correctIndex: 0,
+    language: 'python',
+  },
+  {
+    id: 'dest-03',
+    code: `const a = [1, 2];
+const b = [3, 4];
+console.log([...a, ...b]);`,
+    question: 'What is the output?',
+    options: ['[1, 2, 3, 4]', '[[1, 2], [3, 4]]', '[3, 4, 1, 2]', 'Error'],
+    correctIndex: 0,
+    language: 'javascript',
+  },
+  {
+    id: 'dest-04',
+    code: `x, y = (3, 7)
+print(x + y)`,
+    question: 'What is the output?',
+    options: ['(3, 7)', '37', '10', 'Error'],
+    correctIndex: 2,
+    language: 'python',
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // TERNARY / CONDITIONAL EXPRESSIONS (3 problems)
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    id: 'tern-01',
+    code: `x = 5
+r = "even" if x % 2 == 0 else "odd"
+print(r)`,
+    question: 'What is the output?',
+    options: ['even', 'odd', '5', 'Error'],
+    correctIndex: 1,
+    language: 'python',
+  },
+  {
+    id: 'tern-02',
+    code: `const x = 0;
+console.log(x ? "yes" : "no");`,
+    question: 'What is the output?',
+    options: ['yes', 'no', '0', 'undefined'],
+    correctIndex: 1,
+    language: 'javascript',
+  },
+  {
+    id: 'tern-03',
+    code: `const a = null;
+console.log(a ?? "default");`,
+    question: 'What is the output?',
+    options: ['null', 'undefined', 'default', 'Error'],
+    correctIndex: 2,
+    language: 'javascript',
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // BONUS: LOOPS, STRINGS, MISC (3 problems)
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    id: 'bonus-01',
+    code: `s = "hello"
+print(s.upper().count("L"))`,
+    question: 'What is the output?',
+    options: ['0', '2', '1', 'Error'],
+    correctIndex: 1,
+    language: 'python',
+  },
+  {
+    id: 'bonus-02',
+    code: `const s = "a-b-c";
+console.log(s.split("-").join("."));`,
+    question: 'What is the output?',
+    options: ['a.b.c', 'a-b-c', 'abc', '["a","b","c"]'],
+    correctIndex: 0,
+    language: 'javascript',
+  },
+  {
+    id: 'bonus-03',
+    code: `a = [1, 2, 3]
+b = a
+b.append(4)
+print(len(a))`,
+    question: 'What is the output?',
+    options: ['3', '4', 'Error', '1'],
+    correctIndex: 1,
+    language: 'python',
+  },
 ];
 
 // ─── Public API ────────────────────────────────────────────────────────────

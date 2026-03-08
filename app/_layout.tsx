@@ -26,11 +26,22 @@ function checkAlarmLaunch(router: ReturnType<typeof useRouter>) {
 
   const alarmId = getLaunchAlarmId();
   if (alarmId) {
-    // Find the matching alarm in the store by its UUID or iterate
-    // The StopAlarmIntent writes the UUID; we need to match it back.
-    // For now, set the first armed alarm as active (the UUID mapping is in-memory).
-    // Try to find alarm directly (alarmId might be the alarm's own id)
-    const alarm = store.alarms.find((a) => a.isArmed);
+    // Find the armed alarm whose scheduled time is closest to now
+    const now = new Date();
+    const nowMinutes = now.getHours() * 60 + now.getMinutes();
+    const alarm = store.alarms
+      .filter((a) => a.isArmed)
+      .sort((a, b) => {
+        const distA = Math.min(
+          Math.abs(nowMinutes - (a.time.hour * 60 + a.time.minute)),
+          1440 - Math.abs(nowMinutes - (a.time.hour * 60 + a.time.minute)),
+        );
+        const distB = Math.min(
+          Math.abs(nowMinutes - (b.time.hour * 60 + b.time.minute)),
+          1440 - Math.abs(nowMinutes - (b.time.hour * 60 + b.time.minute)),
+        );
+        return distA - distB;
+      })[0];
     if (alarm) {
       store.setActiveAlarmId(alarm.id);
     }
